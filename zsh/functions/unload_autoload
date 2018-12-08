@@ -1,0 +1,14 @@
+################################################
+# * This function unfunction an autoloaded function
+# * and autoloads it again 
+# *
+################################################
+unload_autoload() {
+  emulate -L zsh
+
+  if (( ${+argv[1]} )); then
+    unfunction "$argv[@]"
+    autoload -Uz "$argv[@]"
+  fi
+  return 0
+}

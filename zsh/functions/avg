@@ -1,0 +1,23 @@
+################################################
+# * Simple average function that takes an array
+# * and outputs the average, min and max values
+# *
+################################################
+
+avg() {
+  emulate -L zsh
+  setopt extendedglob
+
+  if [[ -z $argv ]] return 1
+  
+  typeset -F 2 _avg _sum _min _max
+  typeset -a _sort
+  
+  _sort=( $(echo ${(F)argv[@]} | sort -g | tr "\n" " ") )
+  _min=$_sort[1]
+  _max=$_sort[-1]
+  _sum=${(j:+:)argv[@]}
+  (( _avg=$_sum/${#argv} ))
+  
+  builtin print 'avg: '$_avg'  min: '$_min'  max: '$_max
+}

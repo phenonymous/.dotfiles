@@ -1,0 +1,16 @@
+################################################
+# * Load Nerd Fonts symbolfunctions
+# * https://github.com/ryanoasis/nerd-fonts/tree/master/bin/scripts/lib
+# * 
+################################################
+
+nerdfonts() {
+  emulate -L zsh
+  setopt extendedglob
+  
+  if [[ -d $HOME/.local/share/fonts/nerdfontssymbols ]] \
+    source $HOME/.local/share/fonts/nerdfontssymbols/*.sh
+  #-- We only need to source this once
+  unfunction nerdfonts
+  return 0
+}

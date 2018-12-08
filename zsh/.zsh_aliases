@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+################################################
+# * Some debugging aliases
+# *
+################################################
+(( ${+aliases[time]} )) && unalias time
+alias time="/usr/bin/time -f '%e real\t%U usr\t%S sys'"
+alias rtime="/usr/bin/time -f '%e'%c"
+alias ztime="time zsh -i -c exit"
+alias rztime="rtime zsh -i -c exit"
+alias ztime10="repeat 10 {ztime}"
+alias ztimev="time zsh -i -c -x exit"
+alias zverbose="zsh -i -c -x exit"
+
+################################################
+# * Common aliases
+# *
+################################################
+alias ping='ping -c 5'

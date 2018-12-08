@@ -1,0 +1,30 @@
+robbyrussell/oh-my-zsh path:lib
+robbyrussell/oh-my-zsh path:plugins/colored-man-pages 
+robbyrussell/oh-my-zsh path:plugins/colorize
+robbyrussell/oh-my-zsh path:plugins/command-not-found
+robbyrussell/oh-my-zsh path:plugins/common-aliases
+robbyrussell/oh-my-zsh path:plugins/dirhistory
+robbyrussell/oh-my-zsh path:plugins/docker-compose
+robbyrussell/oh-my-zsh path:plugins/docker
+robbyrussell/oh-my-zsh path:plugins/fzf
+robbyrussell/oh-my-zsh path:plugins/git-extras
+robbyrussell/oh-my-zsh path:plugins/git
+robbyrussell/oh-my-zsh path:plugins/history
+robbyrussell/oh-my-zsh path:plugins/pip
+robbyrussell/oh-my-zsh path:plugins/ssh-agent
+robbyrussell/oh-my-zsh path:plugins/systemadmin
+robbyrussell/oh-my-zsh path:plugins/systemd
+robbyrussell/oh-my-zsh path:plugins/ubuntu
+robbyrussell/oh-my-zsh path:plugins/vagrant
+robbyrussell/oh-my-zsh path:plugins/web-search
+robbyrussell/oh-my-zsh path:plugins/wd
+robbyrussell/oh-my-zsh path:plugins/z
+
+endaaman/lxd-completion-zsh
+github/hub path:etc
+chrissicool/zsh-256color
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+#zsh-users/zsh-syntax-highlighting
+zdharma/fast-syntax-highlighting
+zsh-users/zsh-history-substring-search
