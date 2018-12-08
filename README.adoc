@@ -10,3 +10,7 @@ A preface about https://asciidoc.org[AsciiDoc].
 
 [source,ruby]
 puts "Hello, World!"
+
+=== Sub Section
+
+=== magic.sh
