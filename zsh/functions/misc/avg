@@ -1,0 +1,23 @@
+## vim:ft=zsh ts=2 sw=2 sts=2 et fenc=utf-8
+################################################
+# * Simple average function that takes an array
+# * and outputs the average, min and max values
+# *
+################################################
+
+
+emulate -L zsh
+setopt extendedglob localoptions
+
+if [[ -z $argv ]] return 1
+
+typeset -F 2 _avg _sum _min _max
+typeset -a _sort
+
+_sort=( $(echo ${(F)argv[@]} | sort -g | tr "\n" " ") )
+_min=$_sort[1]
+_max=$_sort[-1]
+_sum=${(j:+:)argv[@]}
+(( _avg=$_sum/${#argv} ))
+
+builtin print 'avg: '$_avg'  min: '$_min'  max: '$_max

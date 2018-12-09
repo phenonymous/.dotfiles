@@ -2,3 +2,4 @@ zsh/*.zwc
 zsh/.zcompdump
 zsh/.zcompcache/
 zsh/.zsh_history
+zsh/functions/nerdfonts/i_*

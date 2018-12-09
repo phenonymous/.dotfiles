@@ -18,3 +18,5 @@ alias zverbose="zsh -i -c -x exit"
 # *
 ################################################
 alias ping='ping -c 5'
+alias tb='taskbook'
+alias svim='sudo vim'

@@ -20,7 +20,7 @@ PATH="$PATH:$ZDOTDIR:$HOME/.local/bin"
 # * add local fpath
 # *
 ################################################
-fpath+=($ZDOTDIR/functions $ZDOTDIR/completions)
+fpath+=($ZDOTDIR/functions/lxchelper $ZDOTDIR/functions/misc $ZDOTDIR/functions/nerdfonts $ZDOTDIR/completions)
 
 ################################################
 # * Environment variables

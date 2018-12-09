@@ -1,0 +1,27 @@
+
+## vim:ft=zsh ts=2 sw=2 sts=2 et fenc=utf-8
+
+emulate -L zsh
+setopt extendedglob
+typeset name script
+typeset -a match
+
+# Autoload all prompt_*_setup functions in fpath
+for script in $^fpath/i_*.sh(N); do
+  if [[ $script == */i_(#b)(*).sh ]]; then
+    name="$match[1]"
+    if [[ $name == "all" ]]; then
+      continue
+    fi
+
+    if [[ -r "$script" ]]; then
+      autoload -Uz i_${name}.sh
+    else
+      print "Couldn't read file $script containing script $name."
+    fi
+  else
+    print "Eh?  Mismatch between glob patterns in nerdinit."
+  fi
+done
+
+unset name script match
