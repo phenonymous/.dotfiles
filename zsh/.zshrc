@@ -25,6 +25,15 @@ fi
 source ${ZDOTDIR}/.zsh_plugins.sh
 
 
+################################################
+# * Load various lib filse
+# *
+################################################
+autoload -Uz nerdinit \
+  harden
+nerdinit
+
+
 #####################[git-prompt]###############
 # * Load zsh-git-promt
 # * https://github.com/starcraftman/zsh-git-prompt
