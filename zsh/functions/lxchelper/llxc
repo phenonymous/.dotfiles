@@ -1,4 +1,4 @@
-## vim:ft=zsh ts=2 sw=2 sts=2 et fenc=utf-8
+# vim:ft=zsh ts=2 sw=2 sts=2 et fenc=utf-8
 ################################################
 # * Function that makes it easier to login to 
 # * lxc containers. Takes two arguments, container
@@ -8,7 +8,7 @@
 
 
 emulate -L zsh
-setopt localoptions NO_shwordsplit
+setopt localoptions
 
 function __llxc_usage() {
   tput setaf 2
@@ -23,39 +23,37 @@ function __llxc_usage() {
   echo '-h, --help        Print this help'
 }
 
-(( $+functions[llxc] )) || function llxc() {
-  local opts container user help
-  local o
+local opts container user help
+local o
 
-  zparseopts -D \
-    -A opts -M \
-    c::=container -container::=c \
-    u::=user -user::=u \
-    h=help -help=h
+zparseopts -D \
+  -A opts -M \
+  c::=container -container::=c \
+  u::=user -user::=u \
+  h=help -help=h
 
-  if [[ -n $help ]]; then
-    __llxc_usage
-    return 0
-  elif [[ -n $container && -n $user ]]; then
-    foreach o (${(k)opts}); do
-      [[ -z $opts[$o] ]] && { 
-        print -u2 'Option requires an arugment -- '$o
-        __llxc_usage
-        return 1
-      }
-    done
-    echo "Logging in to container "$opts[-c]" as user "$opts[-u]
-    lxc exec $opts[-c] -- sudo --user $opts[-u] --login 2> /dev/null
-    return $?
-  else 
-    typeset -A err
-    set -A err -c -u -u -c
-    o="$err[${(k)opts}]"
-    [[ -n $o ]] && {
-      print -u2 'Missing option -- '$o
-      echo
+if [[ -n $help ]]; then
+  __llxc_usage
+  return 0
+elif [[ -n $container && -n $user ]]; then
+  foreach o (${(k)opts}); do
+    [[ -z $opts[$o] ]] && { 
+      print -u2 'Option requires an arugment -- '$o
+      __llxc_usage
+      return 1
     }
-    __llxc_usage
-    return 1
-  fi
-}
+  done
+  echo "Logging in to container "$opts[-c]" as user "$opts[-u]
+  lxc exec $opts[-c] -- sudo --user $opts[-u] --login 2> /dev/null
+  return $?
+else 
+  typeset -A err
+  set -A err -c -u -u -c
+  o="$err[${(k)opts}]"
+  [[ -n $o ]] && {
+    print -u2 'Missing option -- '$o
+    echo
+  }
+  __llxc_usage
+  return 1
+fi

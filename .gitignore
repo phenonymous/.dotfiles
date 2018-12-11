@@ -1,5 +1,6 @@
-zsh/*.zwc
-zsh/.zcompdump
-zsh/.zcompcache/
+zsh/**/*.zwc
+zsh/cache
 zsh/.zsh_history
+zsh/.zsh_plugins
 zsh/functions/nerdfonts/i_*
+zsh/lib/zsh-git-prompt

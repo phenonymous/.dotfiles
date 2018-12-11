@@ -1,5 +1,4 @@
-#!/usr/bin/env zsh
-
+# vim:ft=zsh ts=2 sw=2 sts=2 et fenc=utf-8
 ################################################
 # * Some debugging aliases
 # *
@@ -10,6 +9,7 @@ alias rtime="/usr/bin/time -f '%e'%c"
 alias ztime="time zsh -i -c exit"
 alias rztime="rtime zsh -i -c exit"
 alias ztime10="repeat 10 {ztime}"
+alias rztime10="repeat 10 {rztime}"
 alias ztimev="time zsh -i -c -x exit"
 alias zverbose="zsh -i -c -x exit"
 

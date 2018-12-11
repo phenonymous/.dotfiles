@@ -1,0 +1,21 @@
+# vim:ft=zsh ts=2 sw=2 sts=2 et fenc=utf-8
+
+emulate -L zsh
+setopt extendedglob localoptions
+
+declare -a content; content=( ${ZDOTDIR}/functions/* )
+declare -a grepped; grepped=( ${(@)${(M)content:#*\.zwc}:r} )
+
+foreach folder ( ${(@)grepped} )
+  if [[ ! -s $folder.zwc ]] {
+    zcompile $folder ${folder}/*
+    continue
+  }
+
+  foreach file ( ${folder}/* )
+    if [[ $file -nt $folder.zwc ]] {
+      zcompile $folder ${folder}/*
+      break      
+    }
+  end
+end

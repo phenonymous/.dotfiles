@@ -22,9 +22,10 @@ robbyrussell/oh-my-zsh path:plugins/z
 
 endaaman/lxd-completion-zsh
 github/hub path:etc
-chrissicool/zsh-256color
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
-#zsh-users/zsh-syntax-highlighting
 zdharma/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
+
+#mafredri/zsh-async
+#sindresorhus/pure

@@ -1,0 +1,49 @@
+# vim:ft=zsh ts=2 sw=2 sts=2 et fenc=utf-8
+#-- Check for plugin updates every fortnight
+#-- We do this in the background since it's not
+#-- important that we have updated plugins in
+#-- this session
+
+emulate -L zsh
+setopt extendedglob localoptions
+
+omzfix () {
+  local OMZ
+  OMZ="https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
+  if [[ -w ${ANTIBODY_HOME}/${OMZ}/lib/completion.zsh ]] {
+    sed -r -i 's/use-cache 1/use-cache true/' \
+    ${ANTIBODY_HOME}/${OMZ}/lib/completion.zsh
+    sed -r -i 's/cache-path .+/cache-path $ZSH_COMP_CACHE_DIR/' \
+    ${ANTIBODY_HOME}/${OMZ}/lib/completion.zsh
+  }
+}
+
+#TODO: Log this
+
+if [[ ! -s ${ZDOTDIR}/.zsh_plugins || ${ZDOTDIR}/.zsh_plugin_list -nt ${ZDOTDIR}/.zsh_plugins || \
+  ! -d ${ANTIBODY_HOME} ]] {
+
+  antibody bundle < ${ZDOTDIR}/.zsh_plugin_list > ${ZDOTDIR}/.zsh_plugins
+
+  declare -a lines; lines=( "${(f@)$(<${ZDOTDIR}/.zsh_plugin_list)}" )
+  declare -a grepped; grepped=( ${(@)${(M)lines:#\#PURGE*}//\#PURGE /} )
+  if (( ${#grepped} > 0 )) {
+    eval ${(j:; :)grepped/(#b)(*)/antibody purge $match[1]} >& -
+    echo ${(@j:\n:)lines//PURGE /} > ${ZDOTDIR}/.zsh_plugin_list
+    touch ${ZDOTDIR}/.zsh_plugins
+  }
+  
+  omzfix
+  touch -m ${ZSH_CACHE_DIR}/antibody_update
+
+  unset lines grepped
+}
+
+if [[ ! -e ${ZSH_CACHE_DIR}/antibody_update || \
+  ( -w ${ZSH_CACHE_DIR}/antibody_update && -n ${ZSH_CACHE_DIR}/antibody_update(#qN.mw+2) ) ]] {
+  antibody update >& -
+  omzfix
+  touch -m ${ZSH_CACHE_DIR}/antibody_update
+}
+
+unfunction omzfix

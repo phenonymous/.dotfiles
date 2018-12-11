@@ -5,8 +5,9 @@ emulate -L zsh
 setopt extendedglob
 typeset name script
 typeset -a match
+typeset -gaU nf
 
-# Autoload all prompt_*_setup functions in fpath
+# Autoload all i_*.sh functions in fpath
 for script in $^fpath/i_*.sh(N); do
   if [[ $script == */i_(#b)(*).sh ]]; then
     name="$match[1]"
@@ -16,6 +17,7 @@ for script in $^fpath/i_*.sh(N); do
 
     if [[ -r "$script" ]]; then
       autoload -Uz i_${name}.sh
+      nf=("i_${name}.sh" $nf)
     else
       print "Couldn't read file $script containing script $name."
     fi
@@ -24,4 +26,12 @@ for script in $^fpath/i_*.sh(N); do
   fi
 done
 
+nerd() {
+  eval ${(j:; :)nf}
+  unset nf
+  # This is a one-off function
+  unfunction nerd
+}
+
+# Clean up after ourselves
 unset name script match
