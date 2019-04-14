@@ -1,3 +1,8 @@
-[submodule "git-superstatus"]
+[submodule "zsh/lib/zsh-git-p-f"]
+	path = zsh/lib/zsh-git-p-f
+	url = https://github.com/starcraftman/zsh-git-prompt.git
+	branch = master
+[submodule "zsh/lib/zsh-git-prompt"]
 	path = zsh/lib/zsh-git-prompt
 	url = https://github.com/starcraftman/zsh-git-prompt.git
+	branch = master
