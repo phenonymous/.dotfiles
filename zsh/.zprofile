@@ -16,7 +16,7 @@ typeset -gU cdpath fpath path
 # * add other paths
 # *
 ################################################
-path=($ZDOTDIR $HOME/.local/bin $path)
+path=($ZDOTDIR $HOME/.local/bin /snap/bin $path)
 
 ################################################
 # * add local fpath
