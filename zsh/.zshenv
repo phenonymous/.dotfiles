@@ -10,6 +10,8 @@
 #-- Set path of zsh dotfiles
 ZDOTDIR="$HOME/.dotfiles/zsh"
 
+#-- Set correct terminal locale
+export LANGUAGE=en
 
 ################################################
 # * Faster sourcing
