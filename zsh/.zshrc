@@ -92,7 +92,7 @@ nerdinit
 if [[ $EUID -ne 0 ]]; then
 # no root
 PROMPT='
-%F{blue}%{%G%} %F{243}  %~ %f $(git_super_status &)
+%F{blue}%{%G%} %F{243}  %~ %f $(git_super_status &!)
 %F{yellow} %F{green} %F{red} %f'
 RPROMPT='%F{240} %n %F{yellow}  %F{240}%m  %F{243} %T  %{$reset_color%}'
 else

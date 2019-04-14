@@ -27,5 +27,6 @@ zsh-users/zsh-completions
 zdharma/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
 
-#mafredri/zsh-async
+mafredri/zsh-async
 #sindresorhus/pure
+#bhilburn/powerlevel9k
