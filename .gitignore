@@ -3,5 +3,5 @@ zsh/cache
 zsh/.zsh_history
 zsh/.zsh_plugins
 zsh/functions/nerdfonts/i_*
-zsh/lib/zsh-git-prompt/*
-zsh/lib/fzf/*
+zsh/lib/zsh-git-prompt/**/*
+zsh/lib/fzf/**/*
