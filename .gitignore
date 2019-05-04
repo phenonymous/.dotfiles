@@ -1,3 +1,5 @@
+vim/bundle/*
+!vim/bundle/Vundle.vim
 zsh/**/*.zwc
 zsh/cache
 zsh/.zsh_history

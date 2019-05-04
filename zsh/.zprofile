@@ -34,6 +34,18 @@ ZSH_COMPDUMP=${ZSH_CACHE_DIR}/.zcompdump
 ZSH_COMP_CACHE_DIR=${ZSH_CACHE_DIR}/.zcompcache
 
 ################################################
+# * Terminal enviorment variables
+# *
+################################################
+#-- Set correct terminal locale
+export LANGUAGE=en
+#-- Check fzf location for OMZ
+if [[ ! -d $HOME/.fzf ]] \
+  export FZF_BASE=${ZDOTDIR}/lib/fzf
+#--
+export ANTIBODY_HOME=${ZSH_CACHE_DIR}/antibody
+
+################################################
 # * Profile
 # *
 ################################################

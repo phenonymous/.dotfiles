@@ -8,16 +8,6 @@
 } &!
 
 ################################################
-# * Terminal enviorment variables
-# *
-################################################
-#-- Set correct terminal locale
-export LANGUAGE=en
-#-- Check fzf location for OMZ
-if [[ ! -d $HOME/.fzf ]] \
-  export FZF_BASE=${ZDOTDIR}/lib/fzf
-
-################################################
 # * Fix for VTE only loading for login shells
 # *
 ################################################
@@ -69,7 +59,6 @@ zstyle ':completion:*' accept-exact '*(N)'
 # * Load antibody
 # *
 ################################################
-export ANTIBODY_HOME=${ZSH_CACHE_DIR}/antibody
 {
   autoload -Uz antiupdate
   antiupdate

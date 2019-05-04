@@ -9,6 +9,8 @@
 
 #-- Set path of zsh dotfiles
 ZDOTDIR="$HOME/.dotfiles/zsh"
+#-- Set path of vim dotfiles
+VIMDOTDIR="$HOME/.dotfiles/vim"
 
 ################################################
 # * Faster sourcing
@@ -17,13 +19,13 @@ ZDOTDIR="$HOME/.dotfiles/zsh"
 #-- This will be slower the first time it is run
 source () {
   [[ -w $1 && ( ! -s "$1.zwc" || "$1.zwc" -ot $1 ) ]] &&\
-    zcompile -R $1 &!
+  	[[ $@ != */lib/* ]] && zcompile -R $1 &!
   builtin . $@
 }
 
 . () {
   [[ -w $1 && ( ! -s "$1.zwc" || "$1.zwc" -ot $1 ) ]] &&\
-    zcompile -R $1 &!
+  	[[ $@ != */lib/* ]] && zcompile -R $1 &!
   builtin . $@
 }
 
