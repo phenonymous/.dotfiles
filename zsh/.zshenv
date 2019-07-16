@@ -1,4 +1,4 @@
-# vim:ft=zsh ts=2 sw=2 sts=2 et fenc=utf-8
+# vim:ft=zsh ts=2 sw=2 sts=2 et fenc=utf-8:
 #-- Compile this script if it's newer than
 #-- the compiled version
 {
@@ -7,10 +7,19 @@
     zcompile -R $0
 } &!
 
+#-- options
+setopt noglobalrcs
+
+################################################
+# * Skip calling compinit in /etc/zsh/zshrc
+# *
+################################################
+if [[ -o globalrcs ]] skip_global_compinit=1
+
 #-- Set path of zsh dotfiles
-ZDOTDIR="$HOME/.dotfiles/zsh"
+export -r ZDOTDIR="$HOME/.dotfiles/zsh"
 #-- Set path of vim dotfiles
-VIMDOTDIR="$HOME/.dotfiles/vim"
+export -r VIMDOTDIR="$HOME/.dotfiles/vim"
 
 ################################################
 # * Faster sourcing
@@ -19,16 +28,15 @@ VIMDOTDIR="$HOME/.dotfiles/vim"
 #-- This will be slower the first time it is run
 source () {
   [[ -w $1 && ( ! -s "$1.zwc" || "$1.zwc" -ot $1 ) ]] &&\
-  	[[ $@ != */lib/* ]] && zcompile -R $1 &!
+    [[ $@ != */lib/* ]] && zcompile -R $1 &!
   builtin . $@
 }
 
 . () {
   [[ -w $1 && ( ! -s "$1.zwc" || "$1.zwc" -ot $1 ) ]] &&\
-  	[[ $@ != */lib/* ]] && zcompile -R $1 &!
+    [[ $@ != */lib/* ]] && zcompile -R $1 &!
   builtin . $@
 }
 
-if [[ ( $SHLVL == 1 && ! -o LOGIN ) || -o INTERACTIVE ]]; then
- . $ZDOTDIR/.zprofile
-fi
+if [[ ! -o login && -o interactive ]] \
+  . $ZDOTDIR/.zprofile

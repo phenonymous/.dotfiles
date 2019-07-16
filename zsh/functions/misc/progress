@@ -25,11 +25,15 @@ set -a
 # FUTURE :   For future changes, this must be considered
 # IDEA   :   Ideas for future improvement or added features
 
+# env-vars {{{
+# percentage -> Sane starting value for progress
+# last_reported_progress -> Last progress reported by `__draw_status_line'
+# reporting_steps -> In which rate reporting should be done }}}
 percentage="0.0"
 last_reported_progress=-1
 
 #-- In which rate reporting should be done
-reporting_steps=${reporting_steps:-1}       # reporting_step can be set by the caller, defaults to 1
+reporting_steps=${reporting_steps:-1}       # reporting_steps can be set by the caller, defaults to 1
 
 foreground="${foreground:-$(tput setaf 0)}" # Foreground can be set by the caller, defaults to black
 background="${background:-$(tput setab 2)}" # Background can be set by the caller, defaults to green

@@ -3,7 +3,7 @@
 #-- the compiled version
 {
   0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
-  [[ ! -s $0.zwc || "$0.zwc" -ot $0 ]] &&\
+  [[ -w $0 && ( ! -s $0.zwc || "$0.zwc" -ot $0 ) ]] &&\
     zcompile -R $0
 } &!
 
@@ -56,7 +56,7 @@ zstyle ':completion:*' accept-exact '*(N)'
 } &!
 
 ################################################
-# * Load antibody
+# * Load antibody and plugins
 # *
 ################################################
 {
@@ -66,6 +66,11 @@ zstyle ':completion:*' accept-exact '*(N)'
 } &!
 
 unsetopt extendedglob
+
+#-- enable ssh-agent and gpg-agent
+zstyle :omz:plugins:keychain agents gpg,ssh
+zstyle :omz:plugins:keychain identities id_ecdsa 06E4ED455EDC3E3F6AA59BF58B31FB567A614394
+zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 [[ -r ${ZDOTDIR}/.zsh_plugins ]] && source ${ZDOTDIR}/.zsh_plugins
 
@@ -102,7 +107,6 @@ PROMPT='
 RPROMPT='%{$fg[black]%} %n %F{yellow}  %{$fg[black]%}%m  %F{243} %T  %{$reset_color%}'
 fi
 
-#-- Wrapper functions set in ~/.zshenv
 #-- This restores the builtins
-unfunction source
-unfunction .
+(( $+functions[source] )) && unfunction source
+(( $+functions[.] )) && unfunction .

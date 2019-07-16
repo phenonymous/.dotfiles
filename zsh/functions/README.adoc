@@ -1,0 +1,29 @@
+= README
+:stylesdir: .theme/
+:stylesheet: readthedocs.css
+:toc:
+v1.0, 2019-05-21
+
+== zsh
+This folder contains functions related to startup
+
+== nerdfonts
+This folder contains functions for loading nerdfonts
+
+=== link:nerdfonts/nerdinit[nerdinit]
+This function sources all the icon codepoints for nerdfonts.
+Icons can then be lookedup using `${i_family_name}` syntax.
+
+== misc
+This folder contains functions not categorized
+
+=== link:misc/antiupdate[antiupdate]
+This function looks for changes in `${ZDOTDIR}/.zsh_plugin_list`.
+It looks for 3 things
+
+* If a plugin has been added a call to `antibody bundle` is made
+* If a plugin has been commented out a call
+*
+
+== lxchelper
+This folder contains functions related to lxc

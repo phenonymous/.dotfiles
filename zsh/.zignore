@@ -1,0 +1,7 @@
+#test comment
+[compile]
+lib/
+[source]
+#another comment
+cache/antibody/**/theme-and-appearance*
+cache/

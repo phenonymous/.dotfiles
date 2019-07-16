@@ -1,3 +1,4 @@
+node/
 vim/bundle/*
 !vim/bundle/Vundle.vim
 zsh/**/*.zwc

@@ -19,4 +19,5 @@ alias zverbose="zsh -i -c -x exit"
 ################################################
 alias ping='ping -c 5'
 alias tb='taskbook'
-alias svim='sudo vim'
+alias svim='sudo --preserve-env=VIMDOTDIR -- vim'
+alias stunnel='ssh -D 1337 -f -C -q -N phen@gen-x.io -p 1022'
