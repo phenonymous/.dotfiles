@@ -1,0 +1,63 @@
+#!/usr/bin/env zsh
+
+###
+# The main zfiles process
+###
+_zfiles() {
+  emulate -LR zsh
+  setopt EXTENDED_GLOB
+  
+  ###
+  # Output usage information and exit
+  ###
+  function _zfiles_usage() {
+    print -l - '\033[0;32mUsage:\033[0;m' \
+               '  zfiles [-e exclude] [--excl exclude] [name]'
+  }
+
+  ###
+  # Output version information and exit
+  ###
+  function _zfiles_version() {
+   print - '0.1.0'
+  }
+
+  local help version pat query
+  local -a excl
+
+  zparseopts -D \
+    h=help -help=help \
+    v=version -version=version \
+    e:=excl -excl:=excl
+
+  if [[ -n $help ]]; then
+    _zfiles_usage
+    return
+  fi
+
+  if [[ -n $version ]]; then
+    _zfiles_version
+    return
+  fi
+
+  if [[ -n $1 ]]; then
+    pat="$1"
+    query=true
+  fi
+
+  if $query; then
+    if [[ -n "$excl" ]]; then
+      excl='(*'"$excl[2]"'*|*.zwc)'
+    else
+      excl='*.zwc'
+    fi
+    print - ~zd/.(z*)#${pat}*~${~excl}
+  else
+    print -l - ~zd/.z*~*.zwc
+  fi
+}
+
+_zfiles "$@"
+
+# vim: set ft=zsh :
+
