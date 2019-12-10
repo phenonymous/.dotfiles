@@ -15,12 +15,6 @@ if [[ -v TILIX_ID || -v VTE_VERSION ]] \
   source /etc/profile.d/vte.sh
 
 ################################################
-# * aliases
-# * 
-################################################
-source ${ZDOTDIR}/.zsh_aliases
-
-################################################
 # * Load completion system
 # *
 ################################################
@@ -73,14 +67,30 @@ zstyle :omz:plugins:keychain identities id_ecdsa 06E4ED455EDC3E3F6AA59BF58B31FB5
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 [[ -r ${ZDOTDIR}/.zsh_plugins ]] && source ${ZDOTDIR}/.zsh_plugins
+if [[ -d ${ZDOTDIR}/lib/fzf ]]; then
+  source ${ZDOTDIR}/functions/zsh/fzf-git.zsh
+  source ${ZDOTDIR}/functions/zsh/keybinds-fzf-git.zsh
+fi
 
 ################################################
-# * Load various lib filse
+# * Load various lib files
 # *
 ################################################
 autoload -Uz nerdinit \
              harden
 nerdinit
+
+################################################
+# * Load hooks
+# *
+################################################
+eval "$(direnv hook zsh)"
+
+################################################
+# * aliases
+# * 
+################################################
+source ${ZDOTDIR}/.zsh_aliases
 
 #####################[git-prompt]###############
 # * Load zsh-git-promt

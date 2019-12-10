@@ -1,6 +1,7 @@
 robbyrussell/oh-my-zsh path:lib
+robbyrussell/oh-my-zsh path:plugins/alias-finder
 robbyrussell/oh-my-zsh path:plugins/colored-man-pages 
-robbyrussell/oh-my-zsh path:plugins/colorize
+#robbyrussell/oh-my-zsh path:plugins/colorize
 robbyrussell/oh-my-zsh path:plugins/command-not-found
 robbyrussell/oh-my-zsh path:plugins/common-aliases
 #robbyrussell/oh-my-zsh path:plugins/dirhistory
@@ -17,6 +18,7 @@ robbyrussell/oh-my-zsh path:plugins/ssh-agent
 robbyrussell/oh-my-zsh path:plugins/sudo
 robbyrussell/oh-my-zsh path:plugins/systemadmin
 robbyrussell/oh-my-zsh path:plugins/systemd
+robbyrussell/oh-my-zsh path:plugins/tmux
 robbyrussell/oh-my-zsh path:plugins/ubuntu
 #robbyrussell/oh-my-zsh path:plugins/vagrant
 robbyrussell/oh-my-zsh path:plugins/web-search

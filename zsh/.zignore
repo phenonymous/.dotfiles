@@ -4,4 +4,5 @@ lib/
 [source]
 #another comment
 cache/antibody/**/theme-and-appearance*
+cache/antibody/**/nvm*
 cache/

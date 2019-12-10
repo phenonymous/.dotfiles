@@ -6,6 +6,17 @@ export GPG_TTY=$(tty)
 typeset -gU cdpath fpath path
 
 ################################################
+# * Directory shortnames
+# *
+################################################
+hash -d dd=${HOME}/.dotfiles
+hash -d zd=${ZDOTDIR}
+hash -d zf=${ZDOTDIR}/functions
+hash -d zc=${ZDOTDIR}/completions
+hash -d zl=${ZDOTDIR}/lib
+hash -d vd=${VIMDOTDIR}
+
+################################################
 # * Environment variables
 # *
 ################################################
@@ -27,13 +38,13 @@ ZSH_COMP_CACHE_DIR=${ZSH_CACHE_DIR}/.zcompcache
 # * add other paths
 # *
 ################################################
-path=($ZDOTDIR $HOME/.gem/ruby/2.5.0/bin $HOME/.local/bin /snap/bin $path)
+path=(~zd ~dd/pseudofs/usr/bin $HOME/.gem/ruby/2.5.0/bin $HOME/.local/bin /snap/bin $path)
 
 ################################################
 # * add local fpath
 # *
 ################################################
-fpath=($ZDOTDIR/functions/lxchelper $ZDOTDIR/functions/misc $ZDOTDIR/functions/nerdfonts $ZDOTDIR/completions $fpath)
+fpath=(~zd ~zf/helpers ~zf/misc ~zf/nerdfonts $fpath)
 
 ################################################
 # * Terminal enviorment variables
@@ -45,7 +56,7 @@ export PATH FPATH
 
 #-- Check fzf location for OMZ
 if [[ ! -d $HOME/.fzf ]] \
-  export FZF_BASE=${ZDOTDIR}/lib/fzf
+  export FZF_BASE=~zl/fzf
 #--
 export ANTIBODY_HOME=${ZSH_CACHE_DIR}/antibody
 
