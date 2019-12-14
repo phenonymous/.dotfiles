@@ -43,11 +43,11 @@ zstyle ':completion:*' accept-exact '*(N)'
 # * local fpath
 # *
 ################################################
-{
-  autoload -Uz funcupdate
-  funcupdate
-  unfunction funcupdate
-} &!
+#{
+#  autoload -Uz funcupdate
+#  funcupdate
+#  unfunction funcupdate
+#} &!
 
 ################################################
 # * Load antibody and plugins
@@ -60,6 +60,9 @@ zstyle ':completion:*' accept-exact '*(N)'
 } &!
 
 unsetopt extendedglob
+
+#-- ohmyzsh related settings
+SHORT_HOST=${HOST/.*/}
 
 #-- enable ssh-agent and gpg-agent
 zstyle :omz:plugins:keychain agents gpg,ssh

@@ -14,6 +14,7 @@ hash -d zd=${ZDOTDIR}
 hash -d zf=${ZDOTDIR}/functions
 hash -d zc=${ZDOTDIR}/completions
 hash -d zl=${ZDOTDIR}/lib
+hash -d zac=${ZDOTDIR}/cache
 hash -d vd=${VIMDOTDIR}
 
 ################################################
@@ -44,7 +45,7 @@ path=(~zd ~dd/pseudofs/usr/bin $HOME/.gem/ruby/2.5.0/bin $HOME/.local/bin /snap/
 # * add local fpath
 # *
 ################################################
-fpath=(~zd ~zf/helpers ~zf/misc ~zf/nerdfonts $fpath)
+fpath=(~zd ~zf/helpers.zwc ~zf/misc.zwc ~zf/nerdfonts.zwc $fpath)
 
 ################################################
 # * Terminal enviorment variables

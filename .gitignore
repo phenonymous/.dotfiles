@@ -2,11 +2,9 @@ node/
 pseudofs/
 vim/bundle/*
 !vim/bundle/Vundle.vim
-zsh/**/*.zwc
 zsh/cache
 zsh/.zsh_history
 zsh/.zsh_plugins
-zsh/functions/nerdfonts/i_*
 zsh/lib/zsh-git-prompt/**/*
 zsh/lib/fzf/**/*
-**/1
+*.zwc
