@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+# sck - show control keys
+
+print -l - \
+ "Positioning" \
+ "Ctrl+A\tHome" \
+ "Ctrl+E\tEnd" \
+ "Ctrl+B\tLeft" \
+ "Ctrl+F\tRight" \
+ "Ctrl+I\tTab" \
+ "Ctrl+V\tPage down" \
+ "" \
+ "Editing" \
+ "Ctrl+D\tForward delete" \
+ "Ctrl+H\tDelete previous character" \
+ "Ctrl+K\tCut from cursor to end of line" \
+ "Ctrl+U\tCut from cursor to beginning of line" \
+ "Ctrl+W\tCut previous word" \
+ "Ctrl+Y\tPaste" \
+ "Ctrl+X\tCompound command" \
+ "" \
+ "History" \
+ "Ctrl+N\tNext line" \
+ "Ctrl+P\tPrevious line"\
+ "" \
+ "Terminal" \
+ "Ctrl+M\tEnter" \
+ "Ctrl+J\tLine feed (Enter)" \
+ "Ctrl+L\tClear screen" \
+ "Ctrl+O\tFlush output" \
+ "Ctrl+G\tBell" \
+ "" \
+ "Signals" \
+ "Ctrl+C\tSIGINT" \
+ "Ctrl+Z\tSuspend program"
+
+# vim: set ft=zsh :

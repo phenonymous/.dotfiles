@@ -1,0 +1,102 @@
+#!/usr/bin/env zsh
+# 
+# zcat 0.1.0 (2019-12-11)
+#
+# Copyright 2019, Kristoffer Minya. All rights reserved.
+# This file is part of the acri program, which is distributed under
+# the terms of version 2 of the GNU General Public License.
+#
+
+#MANPAGE BEGIN
+# ZCAT(1)
+# NAME
+#   zcat - concatenate files and print on the standard output.
+# SYNOPSIS
+#   zcat [OPTIONS]... [FILE]...
+# DESCRIPTION
+#   Concatenate FILE(s) to standard output using zsh builtins.
+#   With no FILE, or when FILE is -, read standard input.
+#MANPAGE END
+
+emulate -LR zsh
+set -e
+
+# Colors
+declare rsc red green blue
+print -v red   - $(< <(tput setaf 1))
+print -v green - $(< <(tput setaf 2))
+print -v blue  - $(< <(tput setaf 4))
+print -v rsc   - $(< <(tput sgr 0))
+
+# Options
+declare help version number print_num
+
+# Constants
+declare -r VERSION="0.1.0"
+
+##
+# Exit program with optional message
+##
+function _die()
+{
+  local rc=${?/#0/1}
+  if (( # )); then
+    print - "Error: $1"
+  fi
+  return $rc
+}
+
+##
+# Print usage and exit
+##
+function _zcat_help()
+{
+ print -l - "${green}Usage: ${rsc}$0 \
+   [-n | --number] \
+   [-h | --help] \
+   [-v | --version] \
+   [${blue}FILE${rsc}].." \
+   "-n, --number \C-)\C-)Print line number before each line" \
+   "-h, --help   \C-)\C-)Print this help and exit" \
+   "-v, --version\C-)\C-)Print the version and exit"
+}
+
+##
+# Print version and exit
+##
+function _zcat_version()
+{
+  print - ${(q)VERSION}
+}
+
+##
+# Parse options
+##
+function _zcat_parse_opts()
+{
+  zparseopts -D \
+    h=help -help=help \
+    v=version -version=version
+    n=number -number=number
+
+  if [[ -n $help ]]; then
+    _zcat_help
+    return
+  fi
+  if [[ -n $version ]]; then
+    _zcat_version
+    return
+  fi
+  if [[ -n $number ]]; then
+    print_num=true
+  fi
+}
+
+function _zcat()
+{
+  return
+}
+
+_zcat "$@"
+
+# vim: set ft=zsh :

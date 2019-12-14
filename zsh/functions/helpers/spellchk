@@ -1,0 +1,88 @@
+#!/usr/bin/env zsh
+emulate -L zsh
+
+# Colors
+declare rsc red green blue
+print -v red   - $(< <(tput setaf 1))
+print -v green - $(< <(tput setaf 2))
+print -v blue  - $(< <(tput setaf 4))
+print -v rsc   - $(< <(tput sgr 0))
+
+# Options
+declare help version
+
+##
+# Exit with 1 if last status was 0 and an optional error message
+##
+function _die()
+{
+  local rc=${?/#0/1}
+  (( # )) && \
+    print -u 2 -f "${red}[Error]${rsc} %s\n" - "$@"
+}
+
+zparseopts -D \
+  h=help -help=help \
+  v=version -version=version
+
+##
+# Check dependencies
+##
+function _spellchk_deps()
+{
+  local -a pkgreq missing
+  local pkg
+  pkgreq=( "translate-shell" )
+  #
+ # Loop through the pkg requirements and check if there is a missing pkg
+ ##
+  foreach pkg in "${(@)pkgreq}"; do
+    [[ -s /var/lib/dpkg/info/${pkg}.md5sums ]] || _missing+=("$pkg")
+  done
+
+  if (( ${#missing} )); then
+    _die "Package(s) ${(@)missing} could not be found" "Install with \`\$ sudo apt install ${(@)missing}\'"
+  fi
+}
+
+##
+# Print usage information and exit
+##
+function _spellchk_help()
+{
+  print -l - "${green}Usage:" \
+             "  ${rsc}spellchk [-vh] [${blue}WORD${rsc}].."
+}
+
+##
+# Print version information and exit
+##
+function _spellchk_version()
+{
+  print - "spellchk 0.1.0"
+}
+
+function _spellchk()
+{
+  local word
+  if [[ -n $help ]]; then 
+    _spellchk_help
+    return
+  fi
+  if [[ -n $version ]]; then
+    _spellchk_version
+    return
+  fi
+
+  (( # )) || _spellchk_help
+
+  _spellchk_deps
+
+  foreach word in "$@"; do
+    trans -no-warn -b "$word"
+  done
+}
+
+_spellchk "$@"
+
+# vim: set ft=zsh :
