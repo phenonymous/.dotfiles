@@ -66,7 +66,7 @@ SHORT_HOST=${HOST/.*/}
 
 #-- enable ssh-agent and gpg-agent
 zstyle :omz:plugins:keychain agents gpg,ssh
-zstyle :omz:plugins:keychain identities id_ecdsa 06E4ED455EDC3E3F6AA59BF58B31FB567A614394
+zstyle :omz:plugins:keychain identities id_ecdsa id_unifi 06E4ED455EDC3E3F6AA59BF58B31FB567A614394
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 [[ -r ${ZDOTDIR}/.zsh_plugins ]] && source ${ZDOTDIR}/.zsh_plugins
@@ -96,7 +96,7 @@ eval "$(direnv hook zsh)"
 source ${ZDOTDIR}/.zsh_aliases
 
 #####################[git-prompt]###############
-# * Load zsh-git-promt
+# * Load zsh-git-prompt
 # * https://github.com/starcraftman/zsh-git-prompt
 # * https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
 # *
@@ -104,7 +104,6 @@ source ${ZDOTDIR}/.zsh_aliases
 # *
 ###############################################
 [[ -r ${ZDOTDIR}/lib/zsh-git-prompt/zshrc.sh  ]] && source ${ZDOTDIR}/lib/zsh-git-prompt/zshrc.sh
-
 
 if [[ $EUID -ne 0 ]]; then
 # no root

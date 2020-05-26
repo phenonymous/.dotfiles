@@ -16,9 +16,14 @@ hash -d zc=${ZDOTDIR}/completions
 hash -d zl=${ZDOTDIR}/lib
 hash -d zac=${ZDOTDIR}/cache
 hash -d vd=${VIMDOTDIR}
+NDK=${${(OAf)"$(<<(print -l ~/Android/*ndk*))"}[1]}
+if [[ -d $NDK ]]; then
+  hash -d ndk=$NDK
+  export NDK
+fi
 
 ################################################
-# * Environment variables
+# * Environment variables (shell)
 # *
 ################################################
 HISTFILE=${ZDOTDIR}/.zsh_history
@@ -54,6 +59,7 @@ fpath=(~zd ~zf/helpers.zwc ~zf/misc.zwc ~zf/nerdfonts.zwc $fpath)
 #-- Set correct terminal locale
 export LANGUAGE=en_US.UTF-8
 export PATH FPATH
+export EDITOR=vim
 
 #-- Check fzf location for OMZ
 if [[ ! -d $HOME/.fzf ]] \
@@ -65,7 +71,3 @@ export ANTIBODY_HOME=${ZSH_CACHE_DIR}/antibody
 # * Profile
 # *
 ################################################
-if [[ "$TERMINAL" = "SUBLIME" ]]; then
- source ~/.gitprojects/pl-omg/vcsprompt
- set -f
-fi

@@ -27,6 +27,7 @@ ohmyzsh/ohmyzsh path:plugins/z
 
 #endaaman/lxd-completion-zsh
 #github/hub path:etc
+Tarrasch/zsh-autoenv
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 zdharma/fast-syntax-highlighting
