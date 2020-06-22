@@ -16,7 +16,7 @@ hash -d zc=${ZDOTDIR}/completions
 hash -d zl=${ZDOTDIR}/lib
 hash -d zac=${ZDOTDIR}/cache
 hash -d vd=${VIMDOTDIR}
-NDK=${${(OAf)"$(<<(print -l ~/Android/*ndk*))"}[1]}
+NDK=${${(OAf)"$(<<(unsetopt NOMATCH &&print -l ~/Android/*ndk*))"}[1]}
 if [[ -d $NDK ]]; then
   hash -d ndk=$NDK
   export NDK
