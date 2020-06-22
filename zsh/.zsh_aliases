@@ -20,8 +20,14 @@ alias zverbose="zsh -i -c -x exit"
 alias ping='ping -c 5'
 alias tb='taskbook'
 alias svim='sudo --preserve-env=VIMDOTDIR -- vim'
-#alias stunnel='ssh -D 1337 -f -C -q -N phen@gen-x.io -p 1022'
-(( ${+aliases[fd]} )) && alias fdir=${aliases[fd]} && unalias fd
+
+# Re-alias fd if defined and fdfind is installed
+if type -w fdfind 2>&1 > /dev/null; then
+  (( ${+aliases[fd]} )) && alias fdir=${aliases[fd]} && unalias fd
+  unhash fdfind
+  hash fd=${${:-$(command -v fdfind)}:A}
+fi
+
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias nemo='nohup nemo . > /dev/null &!'
